@@ -10,7 +10,7 @@ export const addOrderItems = catchAsync(async (req, res, next) => {
     orderItems,
     shippingAddress,
     paymentMethod,
-    ItemsPrice,
+    itemsPrice,
     taxPrice,
     shippingPrice,
     totalPrice,
@@ -24,7 +24,7 @@ export const addOrderItems = catchAsync(async (req, res, next) => {
       user: req.user._id,
       shippingAddress,
       paymentMethod,
-      ItemsPrice,
+      itemsPrice,
       taxPrice,
       shippingPrice,
       totalPrice,
@@ -32,5 +32,25 @@ export const addOrderItems = catchAsync(async (req, res, next) => {
     const createdOrder = await order.save()
 
     res.status(201).json(createdOrder)
+  }
+})
+// @ desc Get Order By ID
+// @route api/orders/:id
+// @ access  Private
+
+export const getOrderById = catchAsync(async (req, res, next) => {
+  const order = await Order.findById(req.params.id).populate(
+    "user",
+    "name email"
+  )
+
+  if (order) {
+    res.json(order)
+  } else {
+    next(
+      new appError(
+        "Please check the order number, your orde number is not exist."
+      )
+    )
   }
 })

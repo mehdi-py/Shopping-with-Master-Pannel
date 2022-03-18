@@ -10,6 +10,7 @@ import userProfileUpdateReducer from "./userProfileUpdateSlice"
 import cartShippingAddressReducer from "./cartShippingAddressSlice"
 import cartPaymentMethodReducer from "./cartPaymentMethodSlice"
 import orderCreateReducer from "./orderCreateSlice"
+import OrderDetailsReducer from "./OrderDetailsSlice"
 export const store = configureStore({
   reducer: {
     productList: ProductListReducer,
@@ -22,5 +23,6 @@ export const store = configureStore({
     cartShippingAddress: cartShippingAddressReducer,
     cartPaymentMethod: cartPaymentMethodReducer,
     orderCreate: orderCreateReducer,
+    orderDetails: OrderDetailsReducer,
   },
 })
